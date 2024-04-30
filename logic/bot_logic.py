@@ -18,7 +18,6 @@ def create_task_logic(logger, config, telegram_id, task_type):
 
     except Exception as e:
         logger.warning(f'Задача - create_task_logic для tg - {telegram_id} завершилась ошибкой {e}')
-        raise e
         return False
 
 
@@ -32,5 +31,4 @@ def load_tasks_logic(logger, config, telegram_id):
     except Exception as e:
         logger.warning(f'Задача - load_tasks_logic для tg - {telegram_id} завершилась ошибкой {e}')
         logger.warning(f'Задача - create_task_logic для tg - {telegram_id} завершилась ошибкой {e}')
-        raise e
         return False
