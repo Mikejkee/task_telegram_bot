@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  redis:
+    image: "redis:alpine"
+
+  bot:
+    build: .
+    restart: always
+    env_file: .env
+    volumes:
+      - .:/bot
+    depends_on:
+      - redis
+
+  db:
+    image: postgres
+    restart: always
+    env_file: .env
+    environment:
+      - POSTGRES_USER=${SQL_USER}
+      - POSTGRES_PASSWORD=${SQL_PASSWORD}
+      - POSTGRES_DB=${DATABASE}
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  redis_data:
+  db_data:
